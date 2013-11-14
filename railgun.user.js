@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name		Railgun
 // @namespace	https://github.com/theaquamarine/railgun
+// @homepage	https://github.com/theaquamarine/railgun
 // @description	Fuck MediaWiki
 // @match		http://taimapedia.org/*
 // @version		0.1
