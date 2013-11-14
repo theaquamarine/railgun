@@ -2,7 +2,9 @@
 // @name		Railgun
 // @namespace	https://github.com/theaquamarine/railgun
 // @description	Fuck MediaWiki
-// @include		http://taimapedia.org/*
+// @match		http://taimapedia.org/*
+// @version		0.1
+// @updateurl	https://raw.github.com/theaquamarine/railgun/master/railgun.user.js
 // ==/UserScript==
 
 var nodes = document.querySelectorAll("a[href*='Special:Block'");
