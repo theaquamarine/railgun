@@ -1,0 +1,3 @@
+-	page deletion
+-	add new link for block for spam rather than replacing existing one
+-	add link to pre-loaded nuke
