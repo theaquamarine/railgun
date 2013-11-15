@@ -4,9 +4,19 @@
 // @homepage    https://github.com/theaquamarine/railgun
 // @description Fuck MediaWiki
 // @match       http://taimapedia.org/*
-// @version     0.2
+// @version     0.3
 // @updateurl   https://raw.github.com/theaquamarine/railgun/master/railgun.user.js
 // ==/UserScript==
+
+//Add a Nuke link to sidebar
+navigationlist = document.getElementById("p-navigation").getElementsByTagName("div")[0].getElementsByTagName("ul")[0];
+var aNode = document.createElement("a");
+var liNode = document.createElement("li");
+aNode.appendChild(document.createTextNode("Nuke"));
+aNode.setAttribute('href',"/index.php?title=Special:Nuke");
+liNode.appendChild(aNode);
+liNode.className = 'plainlinks';
+navigationlist.appendChild(liNode);
 
 var nodes = document.querySelectorAll("a[href*='Special:Block'");
 for(var i = 0; i < nodes.length; i++)
