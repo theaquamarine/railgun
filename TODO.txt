@@ -1,5 +1,3 @@
--   add new link for block for spam rather than replacing existing one
 -   page deletion
--   add link to pre-loaded nuke
 -   bulk nuke (checkboxes)
 -   indicator railgun is injecting on page
