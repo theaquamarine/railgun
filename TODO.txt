@@ -1,3 +1,2 @@
--   page deletion
 -   indicator railgun is injecting on page
 -   align buttons somehow to make mass clicking easier.
