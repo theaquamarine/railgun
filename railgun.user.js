@@ -4,9 +4,31 @@
 // @homepage    https://github.com/theaquamarine/railgun
 // @description Fuck MediaWiki
 // @match       http://taimapedia.org/*
-// @version     0.4.1
+// @version     1.0
 // @updateurl   https://raw.github.com/theaquamarine/railgun/master/railgun.user.js
 // ==/UserScript==
+
+
+//neatens up block log entries.
+//encounters strange bugs (getElementsByClassName("blockExpiry").parentNode === null)
+var expiries = document.getElementsByClassName("blockExpiry");
+//for (var i = 0; i < expiries.length; i++) {if (expiries[i].parentNode == null) console.log("true for " + i);}
+for (var i = 0; i < expiries.length; i++)
+{
+    var expiry = expiries[i];
+    if (expiry.nextSibling !== null)
+        //really ought to test what's in the next node, but this breaks the script.
+        //&& (expiry.nextSibling == " (account creation disabled) ‎" || expiry.nextSibling == " (account creation disabled) "))
+    {
+        expiry.parentNode.removeChild(expiry.nextSibling);
+    }
+    expiry.textContent = " " + expiry.title + " ";
+    if (expiry.previousSibling !== null)
+    {
+        expiry.parentNode.removeChild(expiry.previousSibling);
+    }
+}
+
 
 //add a Nuke link to sidebar
 navigationlist = document.getElementById("p-navigation").getElementsByTagName("div")[0].getElementsByTagName("ul")[0];
@@ -18,30 +40,44 @@ liNode.appendChild(aNode);
 liNode.className = 'plainlinks';
 navigationlist.appendChild(liNode);
 
-//move usertools to end of line - document.getElementsByClassName("mw-usertoollinks")[0].parentNode.appendChild(document.getElementsByClassName("mw-usertoollinks")[0])
 var nodes = document.getElementsByClassName("mw-usertoollinks");
 for(var i = 0; i < nodes.length; i++)
 {
     var usertools = nodes[i];
-    usertools.parentNode.appendChild(usertools);    //move usertools to end of parent block.
     var spblocknode = usertools.lastChild.previousSibling;
     var tailnode = usertools.lastChild;
     var newnode;
 
     //make a "block for spam" node
-    usertools.insertBefore(document.createTextNode(" | "),tailnode);
-    newnode = spblocknode.cloneNode();
-    newnode.href += "&wpExpiry=infinite&wpReason=Spamming&wpAutoBlock=1&wpHardBlock=1";
-    newnode.textContent = "block for spam";
-    usertools.insertBefore(newnode,tailnode);
+    if (spblocknode.textContent == "block") //no interest in anyone with a "change block" or "contribs" button.
+    {
+        usertools.insertBefore(document.createTextNode(" | "),tailnode);
+        newnode = spblocknode.cloneNode();
+        newnode.href += "&wpExpiry=infinite&wpReason=Spamming&wpAutoBlock=1&wpHardBlock=1";
+        newnode.textContent = "block for spam";
+        usertools.insertBefore(newnode,tailnode);
+    }
 
-    //make a "nuke" node
-    usertools.insertBefore(document.createTextNode(" | "),tailnode);
-    newnode = spblocknode.cloneNode();
-    newnode.href = newnode.href.replace("Special:Block","Special:Nuke");
-    newnode.title = newnode.title.replace("Special:Block","Special:Nuke");
-    newnode.textContent = "nuke";
-    usertools.insertBefore(newnode,tailnode);
+    if (spblocknode.textContent == "block" || spblocknode.textContent == "contribs")
+    {
+        //make a "nuke" node
+        usertools.insertBefore(document.createTextNode(" | "),tailnode);
+        newnode = spblocknode.cloneNode();
+        newnode.href = newnode.href.replace("Special:Block","Special:Nuke");
+        newnode.title = newnode.title.replace("Special:Block","Special:Nuke");
+        newnode.href = newnode.href.replace("Special:Contributions","Special:Nuke");
+        newnode.title = newnode.title.replace("Special:Contributions","Special:Nuke");
+        newnode.textContent = "nuke";
+        usertools.insertBefore(newnode,tailnode);
+    }
+}
+
+var nodes = document.getElementsByClassName("mw-usertoollinks");
+for(var i = 0; i < nodes.length; i++)
+{
+    var usertools = nodes[i];
+    //move usertools to end of parent block.
+    usertools.parentNode.appendChild(usertools);
 }
 
 //split up user account lines to ensure toolbox links occur in columns -> easier bulk clicking
