@@ -6,4 +6,3 @@
     -   <span class="blockExpiry"> could have textContent = infinite and give ~same information
 -   usertool for block targets not modded on :RecentChanges, modded wrong on :Log/block
 -   all table header rows span
--   refactor adding nuke/sblock

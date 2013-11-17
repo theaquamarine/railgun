@@ -25,14 +25,6 @@ for(var i = 0; i < nodes.length; i++)
     var usertools = nodes[i];
     usertools.parentNode.appendChild(usertools);    //move usertools to end of parent block.
     var spblocknode = usertools.lastChild.previousSibling;
-}
-
-//add nuke & block for spam links to user toolboxes //<span class="mw-usertoollinks">
-var nodes = document.querySelectorAll("a[href*='Special:Block'");
-for(var i = 0; i < nodes.length; i++)
-{
-    var spblocknode = nodes[i];
-    var usertools = spblocknode.parentNode;
     var tailnode = usertools.lastChild;
     var newnode;
 
