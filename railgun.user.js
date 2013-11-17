@@ -19,12 +19,12 @@ liNode.className = 'plainlinks';
 navigationlist.appendChild(liNode);
 
 //move usertools to end of line - document.getElementsByClassName("mw-usertoollinks")[0].parentNode.appendChild(document.getElementsByClassName("mw-usertoollinks")[0])
-
 var nodes = document.getElementsByClassName("mw-usertoollinks");
 for(var i = 0; i < nodes.length; i++)
 {
     var usertools = nodes[i];
-    usertools.parentNode.appendChild(usertools);
+    usertools.parentNode.appendChild(usertools);    //move usertools to end of parent block.
+    var spblocknode = usertools.lastChild.previousSibling;
 }
 
 //add nuke & block for spam links to user toolboxes //<span class="mw-usertoollinks">
@@ -47,6 +47,7 @@ for(var i = 0; i < nodes.length; i++)
     usertools.insertBefore(document.createTextNode(" | "),tailnode);
     newnode = spblocknode.cloneNode();
     newnode.href = newnode.href.replace("Special:Block","Special:Nuke");
+    newnode.title = newnode.title.replace("Special:Block","Special:Nuke");
     newnode.textContent = "nuke";
     usertools.insertBefore(newnode,tailnode);
 }

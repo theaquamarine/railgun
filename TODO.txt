@@ -1,5 +1,9 @@
 -   indicator railgun is injecting on page
 -   enable tools on revision history pages?
--   bulk deletion/block logs look weird
+-   bulk deletion blocks looking weird caused by extreme page name lengths
+-   bulk block blocks distorted by sugar:
+    -   text block " with an expiry time of " irrelevant
+    -   <span class="blockExpiry"> could have textContent = infinite and give ~same information
+-   usertool for block targets not modded on :RecentChanges, modded wrong on :Log/block
 -   all table header rows span
 -   refactor adding nuke/sblock
