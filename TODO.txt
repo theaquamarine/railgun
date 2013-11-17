@@ -1,6 +1,6 @@
 -   indicator railgun is injecting on page
 -   move commments (<span class="comment">) to first column. before separator (<span class="mw-changeelist-separator">)?
--   move rollback links (<span class="mw-rollback-link">) to first column
--   move "was created" (<span class="mw-usertoollinks">.nextSibling) to first column
--   move "uploaded \"$file\"" to first column
 -   enable tools on revision history pages?
+-   bulk deletion/block logs look weird
+-   all table header rows span
+-   refactor adding nuke/sblock

@@ -4,7 +4,7 @@
 // @homepage    https://github.com/theaquamarine/railgun
 // @description Fuck MediaWiki
 // @match       http://taimapedia.org/*
-// @version     0.4
+// @version     0.4.1
 // @updateurl   https://raw.github.com/theaquamarine/railgun/master/railgun.user.js
 // ==/UserScript==
 
@@ -18,7 +18,16 @@ liNode.appendChild(aNode);
 liNode.className = 'plainlinks';
 navigationlist.appendChild(liNode);
 
-//add nuke & block for spam links to user toolboxes
+//move usertools to end of line - document.getElementsByClassName("mw-usertoollinks")[0].parentNode.appendChild(document.getElementsByClassName("mw-usertoollinks")[0])
+
+var nodes = document.getElementsByClassName("mw-usertoollinks");
+for(var i = 0; i < nodes.length; i++)
+{
+    var usertools = nodes[i];
+    usertools.parentNode.appendChild(usertools);
+}
+
+//add nuke & block for spam links to user toolboxes //<span class="mw-usertoollinks">
 var nodes = document.querySelectorAll("a[href*='Special:Block'");
 for(var i = 0; i < nodes.length; i++)
 {
@@ -49,6 +58,7 @@ var tablepreheaders = document.getElementsByClassName("mw-rc-unwatched");   //sp
 for (var i = 0; i < tablepreheaders.length; i++)
 {
     var tableheader = tablepreheaders[i].parentNode;
+    //&nbsps are to fix padding on previous cell (comments). Would be better fixed using actual padding/margins.
     tableheader.outerHTML = tableheader.outerHTML.replace("<td><span class=\"mw-rc-unwatched\">","<td colspan=\"2\"><span class=\"mw-rc-unwatched\">");
 }
 
@@ -57,5 +67,5 @@ var rcuserlines = document.getElementsByClassName("mw-enhanced-rc-nested"); //td
 for(var i = 0; i < rcuserlines.length; i++)
 {
     rcuserline = rcuserlines[i].parentNode;
-    rcuserline.innerHTML = rcuserline.innerHTML.replace(" <span class=\"mw-usertoollinks\">","</td><td><span class=\"mw-usertoollinks\">");
+    rcuserline.innerHTML = rcuserline.innerHTML.replace("<span class=\"mw-usertoollinks\">","&nbsp&nbsp</td><td><span class=\"mw-usertoollinks\">");
 }
