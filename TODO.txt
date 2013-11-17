@@ -1,5 +1,4 @@
 -   indicator railgun is injecting on page
--   move commments (<span class="comment">) to first column. before separator (<span class="mw-changeelist-separator">)?
 -   enable tools on revision history pages?
 -   bulk deletion/block logs look weird
 -   all table header rows span
