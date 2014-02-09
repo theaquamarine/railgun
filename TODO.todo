@@ -1,0 +1,15 @@
+[ ]   special:newpages link in sidebar
+[ ]   special:blocklist link in sidebar
+[ ]   block/block fo spam/nuke links on special:log/delete
+[ ]   autopatrol button on user profiles?
+[ ]   indicator railgun is injecting on page
+[ ]   bulk deletion blocks looking weird caused by extreme page name lengths
+[ ]   usertool for block targets modded wrong on :RecentChanges, :Log/block
+[ ]   all table header rows span
+[ ]   add a nuke node to <span class="mw-logevent-actionlink> (Log/block, probably other places.)
+
+[ ]   Page delection: https://www.mediawiki.org/wiki/API:Delete   (largely covered by Nuke)
+[ ]   User delection: http://en.wikipedia.org/w/api.php?action=deleteglobalaccount&user=Name&reason=Because+I+can
+[ ]   Blocks:
+    [ ]   local   https://www.mediawiki.org/wiki/API:Block
+    [ ]   global  http://en.wikipedia.org/w/api.php?action=globalblock&target=127.0.0.1&expiry=indefinite&reason=Cross-wiki%20abuse&token=123ABC
